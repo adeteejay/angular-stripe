@@ -25,7 +25,11 @@
 		"url": "https://github.com/adeteejay/angular-stripe/issues"
 	},
 	"homepage": "https://github.com/adeteejay/angular-stripe",
-	"keywords": [ "angular", "javascript", "typescript" ],
+	"keywords": [
+		"angular",
+		"javascript",
+		"typescript"
+	],
 	"license": "MIT",
 	"dependencies": {
 		"tslib": "^1.7.1"
