@@ -1,3 +1,4 @@
+import { Options } from './../interfaces/stripe';
 import { Component, Input, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 
 import { combineLatest, Observable, BehaviorSubject } from 'rxjs';
@@ -41,7 +42,11 @@ export class StripeCardComponent implements OnInit {
 			this.elementsOptions$.asObservable(),
 			this.stripe$.asObservable()
 		).pipe(
-			switchMap(([ options, stripe ]) => {
+			switchMap((a) => {
+				const options = a[0];
+				const stripe = a[1];
+				console.log({ options });
+				console.log({ stripe });
 				if (stripe) {
 					if (Object.keys(options).length > 0) {
 						return stripe.elements(options);
