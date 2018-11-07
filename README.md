@@ -29,7 +29,7 @@ $ npm install angular-stripe --save
 
 ## Using the library
 
-Import the `NgxStripeModule` into the application
+Import the `AngularStripeModule` into the application
 
 The module takes the same parameters as the global Stripe object. The APIKey and the optional options to use Stripe connect
 
@@ -45,7 +45,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { NgxStripeModule } from 'angular-stripe';
+import { AngularStripeModule } from 'angular-stripe';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,7 @@ import { NgxStripeModule } from 'angular-stripe';
   ],
   imports: [
     BrowserModule,
-    NgxStripeModule.forRoot('***your-stripe-publishable key***'),
+    AngularStripeModule.forRoot('***your-stripe-publishable key***'),
     LibraryModule
   ],
   providers: [],
@@ -247,7 +247,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { NgxStripeModule } from 'angular-stripe';
+import { AngularStripeModule } from 'angular-stripe';
 
 @NgModule({
   declarations: [
@@ -255,7 +255,7 @@ import { NgxStripeModule } from 'angular-stripe';
   ],
   imports: [
     BrowserModule,
-    NgxStripeModule.forRoot(),
+    AngularStripeModule.forRoot(),
     LibraryModule
   ],
   providers: [],

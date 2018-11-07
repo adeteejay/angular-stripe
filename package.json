@@ -1,5 +1,5 @@
 {
-	"name": "angular-stripe",
+	"name": "@adeteejay/angular-stripe",
 	"private": true,
 	"version": "0.8.0",
 	"description": "Build an Angular library compatible with AoT compilation and Tree shaking like an official package",

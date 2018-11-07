@@ -22,24 +22,18 @@ import 'rxjs/add/operator/map';
 	declarations: [ StripeCardComponent ],
 	exports: [ StripeCardComponent ]
 })
-export class NgxStripeModule {
+export class AngularStripeModule {
 	public static forRoot(publishableKey?: string, options?: Options): ModuleWithProviders {
 		return {
-			ngModule: NgxStripeModule,
+			ngModule: AngularStripeModule,
 			providers: [
 				LazyStripeAPILoader,
 				StripeService,
 				StripeFactoryService,
 				WindowRef,
 				DocumentRef,
-				{
-					provide: STRIPE_PUBLISHABLE_KEY,
-					useValue: publishableKey
-				},
-				{
-					provide: STRIPE_OPTIONS,
-					useValue: options
-				}
+				{ provide: STRIPE_PUBLISHABLE_KEY, useValue: publishableKey },
+				{ provide: STRIPE_OPTIONS, useValue: options }
 			]
 		};
 	}
