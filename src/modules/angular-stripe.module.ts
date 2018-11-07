@@ -10,14 +10,6 @@ import { DocumentRef } from '../services/document-ref.service';
 import { Options, STRIPE_PUBLISHABLE_KEY, STRIPE_OPTIONS } from '../interfaces/stripe';
 import { StripeCardComponent } from '../components/stripe-card.component';
 
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/map';
-
 @NgModule({
 	declarations: [ StripeCardComponent ],
 	exports: [ StripeCardComponent ]

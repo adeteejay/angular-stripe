@@ -1,6 +1,6 @@
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { Observable, BehaviorSubject, from } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map, first, switchMap } from 'rxjs/operators';
 
 import { WindowRef } from './window-ref.service';
 import { LazyStripeAPILoader, Status } from './api-loader.service';
@@ -35,9 +35,11 @@ export class StripeInstance implements StripeServiceInterface {
 	) {
 		this.loader
 			.asStream()
-			.filter((status: Status) => status.loaded === true)
-			.first()
-			.map(() => (this.window.getNativeWindow() as any).Stripe)
+			.pipe(
+				filter((status: Status) => status.loaded === true),
+				first(),
+				map(() => (this.window.getNativeWindow() as any).Stripe)
+			)
 			.subscribe((Stripe: any) => {
 				const stripe = this.options ? Stripe(this.key, this.options) as StripeJS : Stripe(this.key) as StripeJS;
 
@@ -52,19 +54,20 @@ export class StripeInstance implements StripeServiceInterface {
 	public elements(options?: ElementsOptions): Observable<Elements> {
 		return this.stripe$
 			.asObservable()
-			.filter((stripe: any) => Boolean(stripe))
-			.map((stripe: any) => (stripe as StripeJS).elements(options))
-			.first();
+			.pipe(
+				filter((stripe: any) => Boolean(stripe)),
+				map((stripe: any) => (stripe as StripeJS).elements(options)),
+				first()
+			);
 	}
 
 	public createToken(
 		a: Element | BankAccount | Pii,
 		b: CardDataOptions | BankAccountData | PiiData | undefined
 	): Observable<TokenResult> {
-		return this.stripe$
-			.asObservable()
-			.filter((stripe: any) => Boolean(stripe))
-			.switchMap((s: any) => {
+		return this.stripe$.asObservable().pipe(
+			filter((stripe: any) => Boolean(stripe)),
+			switchMap((s: any) => {
 				const stripe = s as StripeJS;
 
 				if (isBankAccount(a) && isBankAccountData(b)) {
@@ -74,35 +77,36 @@ export class StripeInstance implements StripeServiceInterface {
 				} else {
 					return from(stripe.createToken(a as Element, b as CardDataOptions | undefined));
 				}
-			})
-			.first();
+			}),
+			first()
+		);
 	}
 
 	public createSource(a: Element | SourceData, b?: SourceData | undefined): Observable<SourceResult> {
-		return this.stripe$
-			.asObservable()
-			.filter((stripe: any) => Boolean(stripe))
-			.switchMap((s: any) => {
+		return this.stripe$.asObservable().pipe(
+			filter((stripe: any) => Boolean(stripe)),
+			switchMap((s: any) => {
 				const stripe = s as StripeJS;
 
 				if (isSourceData(a)) {
 					return from(stripe.createSource(a as SourceData));
 				}
 				return from(stripe.createSource(a as Element, b));
-			})
-			.first();
+			}),
+			first()
+		);
 	}
 
 	public retrieveSource(source: SourceParams): Observable<SourceResult> {
-		return this.stripe$
-			.asObservable()
-			.filter((stripe: any) => Boolean(stripe))
-			.switchMap((s: any) => {
+		return this.stripe$.asObservable().pipe(
+			filter((stripe: any) => Boolean(stripe)),
+			switchMap((s: any) => {
 				const stripe = s as StripeJS;
 
 				return from(stripe.retrieveSource(source));
-			})
-			.first();
+			}),
+			first()
+		);
 	}
 
 	public paymentRequest(options: PaymentRequestOptions) {

@@ -1,8 +1,7 @@
 {
 	"name": "@adeteejay/angular-stripe",
-	"private": true,
-	"version": "0.8.0",
-	"description": "Build an Angular library compatible with AoT compilation and Tree shaking like an official package",
+	"version": "0.8.1",
+	"description": "Stripe integration for angular 5+",
 	"main": "./bundles/angular-stripe.umd.js",
 	"module": "./esm5/angular-stripe.js",
 	"es2015": "./esm2015/angular-stripe.js",
@@ -11,8 +10,8 @@
 		"test": "karma start",
 		"test:watch": "karma start karma.conf.js --single-run false",
 		"pack:lib": "npm run build && npm pack ./dist",
-		"publish:lib": "npm run build && npm publish ./dist",
-		"publish:lib:next": "npm run build && npm publish --tag next ./dist",
+		"publish:lib": "npm run build && npm publish ./dist --access=public",
+		"publish:lib:next": "npm run build && npm publish --tag next ./dist --access=public",
 		"compodoc": "compodoc -p tsconfig.json",
 		"compodoc:serve": "compodoc -s"
 	},
