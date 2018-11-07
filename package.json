@@ -1,6 +1,6 @@
 {
 	"name": "@adeteejay/angular-stripe",
-	"version": "0.8.1",
+	"version": "0.8.3",
 	"description": "Stripe integration for angular 5+",
 	"main": "./bundles/angular-stripe.umd.js",
 	"module": "./esm5/angular-stripe.js",
@@ -25,11 +25,7 @@
 		"url": "https://github.com/adeteejay/angular-stripe/issues"
 	},
 	"homepage": "https://github.com/adeteejay/angular-stripe",
-	"keywords": [
-		"angular",
-		"javascript",
-		"typescript"
-	],
+	"keywords": [ "angular", "javascript", "typescript" ],
 	"license": "MIT",
 	"dependencies": {
 		"tslib": "^1.7.1"
